@@ -148,36 +148,7 @@ alert-system/
 3. **User Demo**: Visit John's or Jane's Dashboard
 4. **Try Features**: Mark as read, snooze, delete alerts
 
-## 🔌 API Endpoints
 
-### Alert Management
-```http
-POST /api/mark-read
-Content-Type: application/json
-{
-  "user_id": 2,
-  "alert_id": 1
-}
-```
-
-```http
-POST /api/snooze-alert
-Content-Type: application/json
-{
-  "user_id": 2,
-  "alert_id": 1
-}
-```
-
-```http
-POST /api/toggle-reminder/{alert_id}
-Content-Type: application/json
-```
-
-```http
-POST /api/delete-alert/{alert_id}
-Content-Type: application/json
-```
 
 ## 🗃️ Database Schema
 
