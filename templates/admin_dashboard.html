@@ -1,0 +1,59 @@
+<!-- FILE: templates/admin_dashboard.html -->
+{% extends "base.html" %}
+{% block content %}
+<h1>Admin Dashboard</h1>
+
+<a href="/admin/create-alert" class="btn btn-primary">Create New Alert</a>
+
+<h3>Active Alerts</h3>
+{% if alert_data %}
+    {% for item in alert_data %}
+    {% set alert = item.alert %}
+    
+    <div class="alert alert-{{ alert.severity.lower() }}" data-alert-id="{{ alert.id }}">
+        <div class="read-status">
+            {% if item.read_count == item.total_users and item.total_users > 0 %}
+                <span class="read-tick">✅</span>
+                <span style="color: #28a745;">All Read</span>
+            {% elif item.read_count > 0 %}
+                <span class="read-tick">✅</span>
+                <span>{{ item.read_count }}/{{ item.total_users }}</span>
+            {% else %}
+                <span class="unread-dot"></span>
+                <span style="color: #dc3545;">Unread</span>
+            {% endif %}
+            
+            <span class="read-stats">{{ item.read_percentage }}%</span>
+        </div>
+        
+        <h4>{{ alert.title }}</h4>
+        <p>{{ alert.message }}</p>
+        
+        <div style="display: flex; align-items: center; gap: 10px; margin: 10px 0;">
+            <label>Reminders:</label>
+            <label class="switch">
+                <input type="checkbox" {{ 'checked' if alert.reminders_enabled }} 
+                       onchange="toggleReminder({{ alert.id }})">
+                <span class="slider"></span>
+            </label>
+            <span style="font-size: 12px;">{{ 'Enabled' if alert.reminders_enabled else 'Disabled' }}</span>
+        </div>
+        
+        <small style="display: block; margin: 10px 0;">
+            Severity: {{ alert.severity }} | 
+            Visibility: {{ alert.visibility_type.title() }} | 
+            Created: {{ alert.created_at.strftime('%Y-%m-%d %H:%M') }}
+        </small>
+        
+        <div style="margin-top: 15px;">
+            <button onclick="deleteAlert({{ alert.id }})" class="btn btn-danger" style="background-color: #dc3545;">
+                🗑️ Delete Alert
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <p>No active alerts.</p>
+{% endif %}
+{% endblock %}
+

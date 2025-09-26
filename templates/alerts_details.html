@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>📊 Alert Details</h1>
+
+<div class="alert alert-{{ alert.severity.lower() }}" style="margin-bottom: 30px;">
+    <h3>{{ alert.title }}</h3>
+    <p>{{ alert.message }}</p>
+    <small>
+        <strong>Severity:</strong> {{ alert.severity }} | 
+        <strong>Created:</strong> {{ alert.created_at.strftime('%Y-%m-%d %H:%M') }} | 
+        <strong>Reminders:</strong> {{ 'Enabled' if alert.reminders_enabled else 'Disabled' }}
+    </small>
+</div>
+
+<h3>👥 Read Status by User</h3>
+{% if user_status %}
+    <div style="display: grid; gap: 10px;">
+        {% for status in user_status %}
+        <div style="display: flex; align-items: center; padding: 10px; background-color: #f8f9fa; border-radius: 5px;">
+            <div style="flex: 1;">
+                <strong>{{ status.user.name }}</strong>
+                <br>
+                <small>{{ status.user.email }}</small>
+            </div>
+            <div style="text-align: center; margin: 0 20px;">
+                {% if status.is_read %}
+                    <span style="color: #28a745; font-size: 18px;">✅</span>
+                    <br>
+                    <small>Read at: {{ status.read_at.strftime('%Y-%m-%d %H:%M') if status.read_at }}</small>
+                {% elif status.is_snoozed %}
+                    <span style="color: #ffc107; font-size: 18px;">😴</span>
+                    <br>
+                    <small>Snoozed</small>
+                {% else %}
+                    <span style="color: #dc3545; font-size: 18px;">⚪</span>
+                    <br>
+                    <small>Unread</small>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No users found for this alert.</p>
+{% endif %}
+
+<div style="margin-top: 30px;">
+    <a href="/admin" class="btn btn-primary">← Back to Admin Dashboard</a>
+</div>
+{% endblock %}

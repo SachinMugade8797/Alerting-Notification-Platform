@@ -1,0 +1,47 @@
+<!-- FILE: templates/user_dashboard.html -->
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ user.name }}'s Dashboard</h1>
+<p><strong>Team:</strong> {{ user.team.name if user.team else 'No Team' }} | <strong>Email:</strong> {{ user.email }}</p>
+
+<h3>Your Alerts</h3>
+{% if alerts %}
+    {% for alert in alerts %}
+    <div class="alert alert-{{ alert.severity.lower() }}" data-alert-id="{{ alert.id }}">
+        <h4>{{ alert.title }}</h4>
+        <p>{{ alert.message }}</p>
+        
+        <small style="display: block; margin-bottom: 15px;">
+            Severity: {{ alert.severity }} | 
+            Created: {{ alert.created_at.strftime('%Y-%m-%d %H:%M') }}
+            {% if alert.reminders_enabled %}| Reminders: ON{% endif %}
+        </small>
+        
+        <div>
+            <button onclick="markRead({{ alert.id }}, {{ user.id }})" class="btn btn-success">
+                Mark as Read
+            </button>
+            {% if alert.reminders_enabled %}
+            <button onclick="snoozeAlert({{ alert.id }}, {{ user.id }})" class="btn btn-warning">
+                Snooze for Today
+            </button>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <div style="text-align: center; padding: 40px; background-color: #f8f9fa;">
+        <h4>No alerts for you!</h4>
+        <p>You're all caught up.</p>
+    </div>
+{% endif %}
+
+{% if new_alerts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const newAlerts = {{ new_alerts | tojson }};
+    showNewAlertsPopup(newAlerts);
+});
+</script>
+{% endif %}
+{% endblock %}

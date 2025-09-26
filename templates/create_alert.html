@@ -1,0 +1,79 @@
+<!-- FILE: templates/create_alert.html -->
+{% extends "base.html" %}
+{% block content %}
+<h1>Create New Alert</h1>
+
+<form method="POST">
+    <div class="form-group">
+        <label>Title:</label>
+        <input type="text" name="title" required>
+    </div>
+    
+    <div class="form-group">
+        <label>Message:</label>
+        <textarea name="message" rows="4" required></textarea>
+    </div>
+    
+    <div class="form-group">
+        <label>Severity:</label>
+        <select name="severity" required>
+            <option value="Info">Info</option>
+            <option value="Warning">Warning</option>
+            <option value="Critical">Critical</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label>Who should see this:</label>
+        <select name="visibility_type" required onchange="toggleOptions(this.value)">
+            <option value="org">Entire Organization</option>
+            <option value="team">Specific Team</option>
+            <option value="user">Specific User</option>
+        </select>
+    </div>
+    
+    <div class="form-group" id="team-select" style="display: none;">
+        <label>Target Team:</label>
+        <select name="target_team_id">
+            <option value="">Select Team</option>
+            {% for team in teams %}
+            <option value="{{ team.id }}">{{ team.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="form-group" id="user-select" style="display: none;">
+        <label>Target User:</label>
+        <select name="target_user_id">
+            <option value="">Select User</option>
+            {% for user in users %}
+            <option value="{{ user.id }}">{{ user.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="form-group">
+  <label for="reminders_enabled">Enable reminders (every 2 hours)</label><br>
+  <input type="checkbox" id="reminders_enabled" name="reminders_enabled" checked>
+</div>
+
+<div class="form-group">
+  <label for="send_mail">Send Alert On Mail</label><br>
+  <input type="checkbox" id="send_mail" name="send_mail" checked>
+</div>
+
+
+
+    
+    <button type="submit" class="btn btn-success">Create Alert</button>
+    <a href="/admin" class="btn btn-warning">Cancel</a>
+</form>
+
+<script>
+function toggleOptions(type) {
+    document.getElementById('team-select').style.display = type === 'team' ? 'block' : 'none';
+    document.getElementById('user-select').style.display = type === 'user' ? 'block' : 'none';
+}
+</script>
+{% endblock %}
+
