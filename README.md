@@ -9,14 +9,17 @@ A comprehensive alerting system built with Flask that enables organizations to m
 
 ## 📸 Screenshots
 
+### Home Page
+
+<img width="1920" height="1080" alt="Screenshot 2025-09-26 194427" src="https://github.com/user-attachments/assets/583c54f5-55a3-4fd9-8110-3c3b43934036" />
+
+
+
+
 ### Admin Dashboard
 <img width="1920" height="1080" alt="Screenshot 2025-09-26 194519" src="https://github.com/user-attachments/assets/dc3509e4-f433-40f3-b659-c10b0603f8b3" />
 *Admin interface showing active alerts with read status indicators and reminder controls*
 
-
-### Creating New Alert
-![Create Alert](screenshots/create-alert.png)
-*Alert creation form with visibility targeting and reminder settings*
 
 ### User Dashboard
 ## User 1 - Team: Engineering
@@ -27,18 +30,41 @@ A comprehensive alerting system built with Flask that enables organizations to m
 <img width="1920" height="1080" alt="Screenshot 2025-09-26 194709" src="https://github.com/user-attachments/assets/0c875b1a-bc04-400d-b86e-9acb43abc060" />
 
 
+### Creating New Alert
+<img width="1920" height="1080" alt="Screenshot 2025-09-26 201652" src="https://github.com/user-attachments/assets/e66eea47-e1db-4f5e-affc-5393c98074e4" />
+
+*Alert creation form with visibility targeting and reminder settings*
+
+<img width="1920" height="1080" alt="Screenshot 2025-09-26 201829" src="https://github.com/user-attachments/assets/419dada1-655e-4a39-a157-56184fa4bd9b" />
+
 
 ### Popup Notification
-![Popup Notification](screenshots/popup-notification.png)
+<img width="1920" height="1080" alt="Screenshot 2025-09-26 201851" src="https://github.com/user-attachments/assets/96a41031-ea76-4231-b229-4c3f7ab33b4d" />
+
 *Real-time popup notification for new alerts*
 
+
+<img width="1920" height="1080" alt="Screenshot 2025-09-26 201908" src="https://github.com/user-attachments/assets/69bd2db1-a85c-407b-a2de-0926fb12188c" />
+
+
+
 ### Read Status Tracking
-![Read Status](screenshots/read-status.png)
+<img width="1920" height="1080" alt="Screenshot 2025-09-26 201924" src="https://github.com/user-attachments/assets/7936b000-b8f2-490f-bec6-265b61a0099f" />
+
 *WhatsApp-style read indicators showing alert engagement*
 
+### Intelligent Snooze 
+
+<img width="1920" height="1080" alt="Screenshot 2025-09-26 201941" src="https://github.com/user-attachments/assets/70ce5f7b-bed3-4ffa-9876-f08def6216d9" />
+
+
 ### Delete Confirmation
-![Delete Alert](screenshots/delete-confirmation.png)
+<img width="1920" height="1080" alt="Screenshot 2025-09-26 202036" src="https://github.com/user-attachments/assets/795050fc-aacc-4c2b-b0e8-fef9547e325b" />
+
 *Admin alert deletion with confirmation dialog*
+
+<img width="1920" height="1080" alt="Screenshot 2025-09-26 202050" src="https://github.com/user-attachments/assets/21b9e5f3-433d-4b1e-9f35-0f6d8745cc0f" />
+
 
 ## ✨ Features
 
@@ -104,14 +130,14 @@ alert-system/
 │   ├── admin_dashboard.html   # Admin interface
 │   ├── create_alert.html     # Alert creation form
 │   └── user_dashboard.html   # User interface
-├── screenshots/          # Project screenshots
-├── simple_alerts.db      # SQLite database (auto-created)
-└── README.md            # This file
+├── instance/      # SQLite database
+└── README.md
+
 ```
 
 ## 🎮 Demo & Usage
 
-### Sample Users (Auto-created)
+### Sample Users 
 - **Admin User**: Full access to create and manage alerts
 - **John Doe**: Engineering team member (User ID: 2)
 - **Jane Smith**: Marketing team member (User ID: 3)
@@ -256,41 +282,5 @@ Based on the original requirements, here are planned improvements:
 - **RESTful APIs**: Consistent endpoint design
 - **Progressive Enhancement**: Works with basic HTML, enhanced with JavaScript
 
-## 🧪 Testing
 
-### Manual Testing Checklist
-- [ ] Admin can create alerts for all visibility types
-- [ ] Users see relevant alerts based on team/org membership
-- [ ] Mark as read updates status immediately
-- [ ] Snooze functionality works correctly
-- [ ] Delete alerts removes from all user dashboards
-- [ ] Popup appears for new alerts
-- [ ] Read status indicators update in real-time
-- [ ] Reminder toggles work properly
 
-### Test Coverage Areas
-- **Functionality**: All CRUD operations work
-- **User Experience**: Buttons provide feedback
-- **Data Integrity**: Database relationships maintained
-- **Error Handling**: Graceful failure handling
-
-## 🤝 Contributing
-
-This project demonstrates full-stack development skills including:
-- **Backend Development**: Flask, SQLAlchemy, RESTful APIs
-- **Frontend Development**: Responsive HTML/CSS, JavaScript interactions
-- **Database Design**: Relational modeling, proper normalization
-- **User Experience**: Intuitive interfaces, real-time feedback
-- **Software Architecture**: Clean, maintainable, extensible code
-
-## 📄 License
-
-This project is created for educational and demonstration purposes.
-
-## 👤 Author
-
-Built as a comprehensive alerting system demonstrating modern web development practices and user-centered design principles.
-
----
-
-**🎯 Ready for Production?** This system demonstrates enterprise-ready code structure and can be easily extended with additional features like email notifications, advanced analytics, and mobile applications.
